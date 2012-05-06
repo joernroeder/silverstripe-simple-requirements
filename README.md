@@ -17,6 +17,10 @@ If you want to add a file that doesn't exist in your theme directory just add tr
 		'/sapphire/thirdparty/jquery/jquery.js'
 	));
 
+### Note
+
+Like the build-in requirements they are combined only in `live mode`.
+
 ## Variables
 
 	$folder_name_css = 'css';
