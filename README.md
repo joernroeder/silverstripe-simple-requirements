@@ -19,7 +19,7 @@ If you want to add a file that doesn't exist in your theme directory just add tr
 
 ### Note
 
-Like the build-in requirements they are combined only in `live mode`.
+Like the build-in requirements they are combined only in `Director::set_environment_type('live');`.
 
 ## Variables
 
