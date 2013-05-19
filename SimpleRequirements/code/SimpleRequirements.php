@@ -128,7 +128,7 @@ class SimpleRequirements {
 		
 		// add theme path
 		foreach ($files as $file) {
-			$tmp[] = 0 !== strpos($file, '/') ? self::current_theme_path() . '/' . $folder_name . '/' . $file :  ltrim($file, '/');
+			$tmp[] = 0 !== strpos($file, '/') ? self::current_theme_path() . '/' . $folder_name . '/' . $file : $file;
 		}
 		
 		// replace filenames
