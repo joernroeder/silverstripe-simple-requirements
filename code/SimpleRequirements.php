@@ -5,30 +5,34 @@ class SimpleRequirements {
 	/**
 	 * default css files
 	 *
+	 * @config()
 	 * @var array
 	 */
-	public static $default_css = array();
+	private static $default_css = array();
 	
 	/**
 	 * default javascript files
 	 *
+	 * @config
 	 * @var array
 	 */
-	public static $default_javascript = array();
+	private static $default_javascript = array();
 	
 	/**
 	 * default css folder
 	 *
+	 * @config()
 	 * @var string
 	 */
-	public static $folder_name_css = 'css';
+	private static $folder_name_css = 'css';
 	
 	/**
 	 * default javascript folder
 	 *
+	 * @config()
 	 * @var string
 	 */
-	public static $folder_name_javascript = 'js';
+	private static $folder_name_javascript = 'js';
 
 	/**
 	 * minify css files on ?flush=all
@@ -36,19 +40,19 @@ class SimpleRequirements {
 	 *
 	 * @return boolean
 	 */
-	public static $minify_css_on_flush = true;
+	private static $minify_css_on_flush = true;
 	
 	/**
 	 * css wrapper for {@link addFiles()}
 	 */
-	public static function css($files, $outputName = '') {
+	private static function css($files, $outputName = '') {
 		self::addFiles('css', $files, $outputName);
 	}
 	
 	/**
 	 * javascript wrapper for {@link addFiles()}
 	 */
-	public static function javascript($files, $outputName = '') {
+	private static function javascript($files, $outputName = '') {
 		self::addFiles('js', $files, $outputName);
 	}
 	
@@ -57,7 +61,7 @@ class SimpleRequirements {
 	 *
 	 * @return string
 	 */
-	public static function current_theme_path() {
+	private static function current_theme_path() {
 		return 'themes/'.SSViewer::current_theme();
 	}
 	
@@ -71,10 +75,10 @@ class SimpleRequirements {
 		$folderName = '';
 		
 		if ('css' == $type) {
-			$folderName = self::$folder_name_css;
+			$folderName = self::config()->get('folder_name_css');
 		}
 		else if ('js' == $type) {
-			$folderName = self::$folder_name_javascript;
+			$folderName = self::config()->get('folder_name_javascript');
 		}
 		
 		return $folderName;
@@ -122,7 +126,7 @@ class SimpleRequirements {
 				$files = self::$default_css;
 			}
 			else if ($type == 'js') {
-				$files = self::$default_javascript;
+				$files = self::config()->get('default_javascript');
 			}
 		}
 		
@@ -165,7 +169,7 @@ class SimpleRequirements {
 		Requirements::process_combined_files();
 		
 		// minify css files the quick way
-		if (self::$minify_css_on_flush && isset($request) && $request->getVar('flush') == 'all' && $type == 'css') {
+		if (self::config()->get('minify_css_on_flush') && isset($request) && $request->getVar('flush') == 'all' && $type == 'css') {
 		
 			$file = Director::baseFolder() . '/' . Requirements::backend()->getCombinedFilesFolder() . '/' . "$name.min.$type";
 			
