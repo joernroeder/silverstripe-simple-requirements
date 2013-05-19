@@ -42,6 +42,9 @@ class SimpleRequirements {
 	 */
 	private static $minify_css_on_flush = true;
 	
+	public static function config() {
+		return Config::inst('SimpleRequirements');
+	}
 	/**
 	 * css wrapper for {@link addFiles()}
 	 */
