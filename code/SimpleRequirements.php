@@ -45,14 +45,14 @@ class SimpleRequirements {
 	/**
 	 * css wrapper for {@link addFiles()}
 	 */
-	private static function css($files, $outputName = '') {
+	public static function css($files, $outputName = '') {
 		self::addFiles('css', $files, $outputName);
 	}
 	
 	/**
 	 * javascript wrapper for {@link addFiles()}
 	 */
-	private static function javascript($files, $outputName = '') {
+	public static function javascript($files, $outputName = '') {
 		self::addFiles('js', $files, $outputName);
 	}
 	
@@ -61,7 +61,7 @@ class SimpleRequirements {
 	 *
 	 * @return string
 	 */
-	private static function current_theme_path() {
+	public static function current_theme_path() {
 		return 'themes/'.SSViewer::current_theme();
 	}
 	
