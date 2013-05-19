@@ -42,8 +42,8 @@ class SimpleRequirements {
 	 */
 	private static $minify_css_on_flush = true;
 	
-	public static function config() {
-		return Config::inst('SimpleRequirements');
+	public static function get($name, $sourceOptions = 0, &$result = null, $suppress = null) {
+		return Config::inst()->get('SimpleRequirements', $name, $sourceOptions, $result, $suppress);
 	}
 	/**
 	 * css wrapper for {@link addFiles()}
@@ -78,10 +78,10 @@ class SimpleRequirements {
 		$folderName = '';
 		
 		if ('css' == $type) {
-			$folderName = self::config()->get('folder_name_css');
+			$folderName = self::get('folder_name_css');
 		}
 		else if ('js' == $type) {
-			$folderName = self::config()->get('folder_name_javascript');
+			$folderName = self::get('folder_name_javascript');
 		}
 		
 		return $folderName;
@@ -129,7 +129,7 @@ class SimpleRequirements {
 				$files = self::$default_css;
 			}
 			else if ($type == 'js') {
-				$files = self::config()->get('default_javascript');
+				$files = self::get('default_javascript');
 			}
 		}
 		
@@ -172,7 +172,7 @@ class SimpleRequirements {
 		Requirements::process_combined_files();
 		
 		// minify css files the quick way
-		if (self::config()->get('minify_css_on_flush') && isset($request) && $request->getVar('flush') == 'all' && $type == 'css') {
+		if (self::get('minify_css_on_flush') && isset($request) && $request->getVar('flush') == 'all' && $type == 'css') {
 		
 			$file = Director::baseFolder() . '/' . Requirements::backend()->getCombinedFilesFolder() . '/' . "$name.min.$type";
 			
