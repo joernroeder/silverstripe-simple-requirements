@@ -126,7 +126,7 @@ class SimpleRequirements {
 		
 		if (!is_array($files) && $files = 'default') {
 			if ($type == 'css') {
-				$files = self::$default_css;
+				$files = self::get('default_css');
 			}
 			else if ($type == 'js') {
 				$files = self::get('default_javascript');
@@ -135,7 +135,7 @@ class SimpleRequirements {
 		
 		// add theme path
 		foreach ($files as $file) {
-			$tmp[] = 0 !== strpos($file, '/') ? self::current_theme_path() . '/' . $folder_name . '/' . $file : $file;
+			$tmp[] = 0 !== strpos($file, '/') ? self::current_theme_path() . '/' . $folder_name . '/' . $file : ltrim($file, '/');
 		}
 		
 		// replace filenames
